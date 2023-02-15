@@ -28,4 +28,6 @@
                           :max-height max-height})
          items (map #(menu-item/menu-item item-info %)
                     options/menu-items)]
+   (m/Padding
+    .padding (.all m/EdgeInsets 20))
    (menu-bar/menu-bar bar-info items)))

@@ -32,6 +32,11 @@
                          (:border-radius info))
                        nil)))
     .clipBehavior (.antiAlias m/Clip))
-   (m/ListView
+   (m.ListView/separated
+    .separatorBuilder (fn [_ i] (m/VerticalDivider .color m.Colors/white .width 1))
     .scrollDirection (.horizontal m/Axis)
-    .children items)))
+
+    ;; .children items
+    .itemCount (count items)
+    .itemBuilder (fn [_ i] (nth items i))
+    )))

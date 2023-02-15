@@ -27,8 +27,7 @@
       .child
       (m/Column
        .children
-       [(m/Expanded)
-        (menu/menu)
+       [(menu/menu)
         (f/widget
          :context ctx
          (m/ElevatedButton
