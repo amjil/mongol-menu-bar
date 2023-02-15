@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![image](mongol-menu-bar.gif)
+
 
 ## Getting Started
 
