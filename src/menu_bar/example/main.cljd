@@ -15,7 +15,7 @@
     .home
     (m/Scaffold
      .appBar (m/AppBar
-              .title (m/Text "Mongolian Search Bar"))
+              .title (m/Text "Mongolian Menu Bar"))
      .body
      (m/Center
       ;; .child (mgl/MongolText
