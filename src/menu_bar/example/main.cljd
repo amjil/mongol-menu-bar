@@ -4,6 +4,7 @@
    ["package:mongol/mongol.dart" :as mgl]
    [cljd.flutter.alpha2 :as f]
    [menu-bar.menu :as menu]
+   [menu-bar.options :as options]
    [menu-bar.utils :as utils]))
 
 (defn main []
@@ -27,7 +28,10 @@
       .child
       (m/Column
        .children
-       [(menu/menu)
+       [(menu/menu {:bar {:elavation 10}
+                    :item {}}
+                   options/menu-items)
+
         (f/widget
          :context ctx
          (m/ElevatedButton

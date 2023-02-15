@@ -10,11 +10,11 @@
 
 
 (defn menu
-  []
+  [info items]
   (f/widget
    :context ctx
-   :let [item-info (merge options/menu-item {})
-         edge-insets (:padding item-info)
+   :let [item-info (merge options/menu-item (:item info))
+         ^m/EdgeInsets edge-insets (:padding item-info)
          max-height (+ (.-top edge-insets)
                        (.-bottom edge-insets)
                        (apply max
@@ -22,12 +22,12 @@
                                      %
                                      (:text-style item-info)
                                      ctx)
-                                   options/menu-items)))
+                                   items)))
          bar-info (merge options/menu-bar
-                         {:elavation 10
-                          :max-height max-height})
+                         (:bar info)
+                         {:max-height max-height})
          items (map #(menu-item/menu-item item-info %)
-                    options/menu-items)]
+                    items)]
    (m/Padding
     .padding (.all m/EdgeInsets 20))
    (menu-bar/menu-bar bar-info items)))
