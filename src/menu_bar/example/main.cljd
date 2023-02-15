@@ -1,7 +1,10 @@
-(ns menu-bair.example.main
+(ns menu-bar.example.main
   (:require
    ["package:flutter/material.dart" :as m]
-   ["package:mongol/mongol.dart" :as mgl]))
+   ["package:mongol/mongol.dart" :as mgl]
+   [cljd.flutter.alpha2 :as f]
+   [menu-bar.menu :as menu]
+   [menu-bar.utils :as utils]))
 
 (defn main []
   (m/runApp
@@ -15,10 +18,20 @@
               .title (m/Text "Mongolian Search Bar"))
      .body
      (m/Center
-      .child (mgl/MongolText
-              " ᠳᠠᠶᠠᠭᠠᠷ ᠰᠠᠶ᠋ᠢᠨ ᠪᠠᠶ᠋ᠢᠨ᠎ᠠ ᠊ᠤᠤ?"
-              .style (m/TextStyle
-                      .color m.Colors/blue
-                      ;; .fontFamily "MongolianBaiZheng"
-                      .fontSize 32.0))))
+      ;; .child (mgl/MongolText
+      ;;         " ᠳᠠᠶᠠᠭᠠᠷ ᠰᠠᠶ᠋ᠢᠨ ᠪᠠᠶ᠋ᠢᠨ᠎ᠠ ᠊ᠤᠤ?"
+      ;;         .style (m/TextStyle
+      ;;                 .color m.Colors/blue
+      ;;                 ;; .fontFamily "MongolianBaiZheng"
+      ;;                 .fontSize 32.0)))
+      .child
+      (m/Column
+       .children
+       [(menu/menu)
+        (f/widget
+         :context ctx
+         (m/ElevatedButton
+          .child (m/Text "Open")
+          .onPressed #(dart:core/print (str "Football' s width = " (utils/compute-text-width "Football" nil ctx)))))
+        ])))
     .debugShowCheckedModeBanner false)))

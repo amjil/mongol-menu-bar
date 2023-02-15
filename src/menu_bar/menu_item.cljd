@@ -1,0 +1,24 @@
+(ns menu-bar.menu-item
+  (:require
+   ["package:flutter/material.dart" :as m]
+   ["package:mongol/mongol.dart" :as mgl]
+   [cljd.flutter.alpha2 :as f]))
+
+(defn menu-item 
+  [info item]
+  (f/widget
+   (m/InkWell
+    .onTap
+    (fn []
+      (when (some? (:on-tap info))
+        (:on-tap info)))
+    .onLongPress
+    (fn []
+      (when (some? (:on-long-press info))
+        (:on-long-press info)))
+    .splashColor (:splash-color info))
+   (m/Center)
+   (m/Padding
+    .padding (or (:padding info)
+                 (.all m/EdgeInsets 0)))
+   (mgl/MongolText item)))

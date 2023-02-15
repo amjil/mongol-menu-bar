@@ -1,0 +1,69 @@
+(ns menu-bar.options
+  (:require 
+   ["package:flutter/material.dart" :as m]))
+
+(def tap-type 
+  [:tap
+   :secondary-tap
+   :long-tap
+   :double-tap
+   :none])
+
+(def menu-alignment
+  [:top-left
+   :top-center
+   :top-right
+   :center-left
+   :center-right
+   :center
+   :bottom-left
+   :bottom-right
+   :bottom-center])
+
+(def menu-position
+  [:inside :outside])
+
+(def menu-boer-style
+  [:straight 
+   :rounded
+   :pill])
+
+;; (def menu-border
+;;   {:arrow-alignment :top-center
+;;    :radius 6
+;;    :use-padding true
+;;    :draw-arrow false})
+
+
+(def menu-item
+  {:on-tap #(dart:core/print "onTap ....")
+   :on-long-press #(dart:core/print "onLongPress ...")
+   :child nil
+   :background-color m.Colors/green
+   :splash-color m.Colors/white})
+
+(def menu-bar 
+  {:background-color m.Colors/blue
+   :elavation 10
+   :border-style :rounded
+   :border-radius 6})
+
+(def menu-items 
+  ["Football"
+   "Handball"
+   "Bandy ball"
+   "Baseball"
+   "Basketball"
+   "Billiard balls"
+   "Bowling ball"
+   "Cricket ball"
+   "Ball 1"
+   "Ball 2"
+   "Ball 3"
+   "Ball 4"
+   "Ball 5"
+   "Ball 6"
+   "Ball 7"
+   "Ball 8"
+   "Ball 9"
+   ])

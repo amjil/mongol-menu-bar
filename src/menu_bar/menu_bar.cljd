@@ -1,0 +1,37 @@
+(ns menu-bar.menu-bar
+  (:require
+   ["package:flutter/material.dart" :as m]
+   ["package:mongol/mongol.dart" :as mgl]
+   [cljd.flutter.alpha2 :as f]))
+
+(defn menu-bar 
+  [info items]
+  (f/widget
+   :context ctx
+   :let [width  (-> m/MediaQuery (.of ctx) .-size .-width)
+         height (-> m/MediaQuery (.of ctx) .-size .-height)]
+   (m/Container
+    .constraints
+    (m/BoxConstraints
+     .maxHeight (/ height 2)
+     .minHeight 40
+     .maxWidth 200)
+    .alignment (.topLeft m/Alignment))
+   (m/AnimatedOpacity
+    .opacity 1
+    .duration (Duration .milliseconds 250))
+   (m/Material
+    .color (:background-color info)
+    .elevation (:elavation info)
+    .borderRadius
+    (.all m/BorderRadius
+          (.circular m/Radius
+                     (if (not= (:border-style info) :pill)
+                       (if (= (:border-style info) :straight)
+                         0
+                         (:border-radius info))
+                       nil)))
+    .clipBehavior (.antiAlias m/Clip))
+   (m/ListView
+    .scrollDirection (.horizontal m/Axis)
+    .children items)))

@@ -1,0 +1,17 @@
+(ns menu-bar.menu
+  (:require
+   ["package:flutter/material.dart" :as m]
+   ["package:mongol/mongol.dart" :as mgl]
+   [cljd.flutter.alpha2 :as f]
+   [menu-bar.options :as options]
+   [menu-bar.menu-item :as menu-item]
+   [menu-bar.menu-bar :as menu-bar]))
+
+
+(defn menu
+  []
+  (let [item-info {}
+        bar-info {:elavation 10}
+        items (map #(menu-item/menu-item (merge options/menu-item item-info) %)
+                   options/menu-items)]
+    (menu-bar/menu-bar (merge options/menu-bar bar-info) items)))

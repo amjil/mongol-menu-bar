@@ -1,0 +1,17 @@
+(ns menu-bar.utils
+  (:require
+   ["package:flutter/material.dart" :as m]))
+
+
+(defn compute-text-width 
+  [text style ctx]
+  (let [scale (-> m/MediaQuery (.of ctx) .textScaleFactor)
+        text-painter
+        (m/TextPainter
+         .text (m/TextSpan .text text .style style)
+         .maxLines 1
+         .textDirection (.ltr m/TextDirection)
+         .textScaleFactor scale)]
+
+    (.layout text-painter .minWidth 0 .maxWidth double/infinity)
+    (-> text-painter .-size .-width)))
