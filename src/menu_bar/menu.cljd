@@ -5,13 +5,27 @@
    [cljd.flutter.alpha2 :as f]
    [menu-bar.options :as options]
    [menu-bar.menu-item :as menu-item]
-   [menu-bar.menu-bar :as menu-bar]))
+   [menu-bar.menu-bar :as menu-bar]
+   [menu-bar.utils :as utils]))
 
 
 (defn menu
   []
-  (let [item-info {}
-        bar-info {:elavation 10}
-        items (map #(menu-item/menu-item (merge options/menu-item item-info) %)
-                   options/menu-items)]
-    (menu-bar/menu-bar (merge options/menu-bar bar-info) items)))
+  (f/widget
+   :context ctx
+   :let [item-info (merge options/menu-item {})
+         edge-insets (:padding item-info)
+         max-height (+ (.-top edge-insets)
+                       (.-bottom edge-insets)
+                       (apply max
+                              (map #(utils/compute-text-width
+                                     %
+                                     (:text-style item-info)
+                                     ctx)
+                                   options/menu-items)))
+         bar-info (merge options/menu-bar
+                         {:elavation 10
+                          :max-height max-height})
+         items (map #(menu-item/menu-item item-info %)
+                    options/menu-items)]
+   (menu-bar/menu-bar bar-info items)))

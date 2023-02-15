@@ -17,8 +17,10 @@
       (when (some? (:on-long-press info))
         (:on-long-press info)))
     .splashColor (:splash-color info))
-   (m/Center)
+   (m/Align
+    .alignment (.topCenter m/Alignment))
+  ;;  (m/Center)
    (m/Padding
     .padding (or (:padding info)
                  (.all m/EdgeInsets 0)))
-   (mgl/MongolText item)))
+   (mgl/MongolText item .style (:text-style info))))

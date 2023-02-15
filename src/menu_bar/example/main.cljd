@@ -27,11 +27,11 @@
       .child
       (m/Column
        .children
-       [(menu/menu)
+       [(m/Expanded)
+        (menu/menu)
         (f/widget
          :context ctx
          (m/ElevatedButton
           .child (m/Text "Open")
-          .onPressed #(dart:core/print (str "Football' s width = " (utils/compute-text-width "Football" nil ctx)))))
-        ])))
+          .onPressed #(dart:core/print (str "Football' s width = " (utils/compute-text-width "Football" nil ctx)))))])))
     .debugShowCheckedModeBanner false)))

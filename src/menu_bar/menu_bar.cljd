@@ -13,7 +13,7 @@
    (m/Container
     .constraints
     (m/BoxConstraints
-     .maxHeight (/ height 2)
+     .maxHeight (or (:max-height info) (/ height 2))
      .minHeight 40
      .maxWidth 200)
     .alignment (.topLeft m/Alignment))

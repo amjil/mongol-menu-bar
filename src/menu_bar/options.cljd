@@ -40,7 +40,9 @@
    :on-long-press #(dart:core/print "onLongPress ...")
    :child nil
    :background-color m.Colors/green
-   :splash-color m.Colors/white})
+   :splash-color m.Colors/white
+   :padding (.all m/EdgeInsets 10)
+   :text-style (m/TextStyle .fontSize 18 .fontFamily "MongolianBaiZheng" .color m.Colors/white)})
 
 (def menu-bar 
   {:background-color m.Colors/blue
