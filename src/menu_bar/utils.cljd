@@ -5,7 +5,7 @@
 
 (defn compute-text-width 
   [text style ctx]
-  (let [scale (-> m/MediaQuery (.of ctx) .textScaleFactor)
+  (let [scale (-> m/MediaQuery (.of ctx) .-textScaleFactor)
         text-painter
         (m/TextPainter
          .text (m/TextSpan .text text .style style)
