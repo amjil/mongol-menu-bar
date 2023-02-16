@@ -11,23 +11,27 @@
 
 (defn menu
   [info items]
-  (f/widget
-   :context ctx
-   :let [item-info (merge options/menu-item (:item info))
-         ^m/EdgeInsets edge-insets (:padding item-info)
-         max-height (+ (.-top edge-insets)
-                       (.-bottom edge-insets)
-                       (apply max
-                              (map #(utils/compute-text-width
-                                     %
-                                     (:text-style item-info)
-                                     ctx)
-                                   items)))
-         bar-info (merge options/menu-bar
-                         (:bar info)
-                         {:max-height max-height})
-         items (map #(menu-item/menu-item item-info %)
-                    items)]
-   (m/Padding
-    .padding (.all m/EdgeInsets 20))
-   (menu-bar/menu-bar bar-info items)))
+  (if (empty? items)
+
+    (m/Container)
+
+    (f/widget
+     :context ctx
+     :let [item-info (merge options/menu-item (:item info))
+           ^m/EdgeInsets edge-insets (:padding item-info)
+           max-height (+ (.-top edge-insets)
+                         (.-bottom edge-insets)
+                         (apply max
+                                (map #(utils/compute-text-width
+                                       %
+                                       (:text-style item-info)
+                                       ctx)
+                                     items)))
+           bar-info (merge options/menu-bar
+                           (:bar info)
+                           {:max-height max-height})
+           items (map #(menu-item/menu-item item-info %)
+                      items)]
+     (m/Padding
+      .padding (.all m/EdgeInsets 20))
+     (menu-bar/menu-bar bar-info items))))
