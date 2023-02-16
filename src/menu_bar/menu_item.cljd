@@ -11,7 +11,9 @@
     .onTap
     (fn []
       (when (some? (:on-tap info))
-        (:on-tap info)))
+        ;; First Get The On Tap Function, 
+        ;; Next Excecute The Function With Params
+        ((:on-tap info) item)))
     .onLongPress
     (fn []
       (when (some? (:on-long-press info))
