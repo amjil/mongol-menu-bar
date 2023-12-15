@@ -1,15 +1,13 @@
 (ns menu-bar.menu-bar
   (:require
    ["package:flutter/material.dart" :as m]
-   ["package:mongol/mongol.dart" :as mgl]
-   [cljd.flutter.alpha2 :as f]))
+   [cljd.flutter :as f]))
 
 (defn menu-bar 
   [info items]
   (f/widget
    :context ctx
-   :let [width  (-> m/MediaQuery (.of ctx) .-size .-width)
-         height (-> m/MediaQuery (.of ctx) .-size .-height)]
+   :let [height (-> m/MediaQuery (.of ctx) .-size .-height)]
    (m/Container
     .constraints
     (m/BoxConstraints
