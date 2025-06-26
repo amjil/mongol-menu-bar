@@ -17,23 +17,86 @@
      .appBar (m/AppBar
               .title (m/Text "Mongolian Menu Bar"))
      .body
-     (m/Center
-      ;; .child (mgl/MongolText
-      ;;         " ᠳᠠᠶᠠᠭᠠᠷ ᠰᠠᠶ᠋ᠢᠨ ᠪᠠᠶ᠋ᠢᠨ᠎ᠠ ᠊ᠤᠤ?"
-      ;;         .style (m/TextStyle
-      ;;                 .color m.Colors/blue
-      ;;                 ;; .fontFamily "MongolianBaiZheng"
-      ;;                 .fontSize 32.0)))
+     (m/Padding
+      .padding (.all m/EdgeInsets 20)
       .child
       (m/Column
+       .crossAxisAlignment (.start m/CrossAxisAlignment)
        .children
-       [(menu/menu {:bar {:elavation 10}
+       [
+        ;; Example 1: Default font configuration
+        (m/Text "1. Default Font Configuration:" .style (m/TextStyle .fontSize 16 .fontWeight m.FontWeight/bold))
+        (menu/menu {:bar {:elavation 10}
                     :item {}}
                    options/menu-items)
-
+        
+        (m/SizedBox .height 20)
+        
+        ;; Example 2: Custom font configuration
+        (m/Text "2. Custom Font Configuration:" .style (m/TextStyle .fontSize 16 .fontWeight m.FontWeight/bold))
+        (menu/menu {:font-config {:font-family "Arial"
+                                 :font-size 16
+                                 :font-color m.Colors/black
+                                 :font-weight m.FontWeight/bold}
+                   :bar {:elavation 10}
+                   :item {}}
+                   ["Arial Font" "Bold Black" "Custom Config"])
+        
+        (m/SizedBox .height 20)
+        
+        ;; Example 3: Only configure font family
+        (m/Text "3. Only Configure Font Family:" .style (m/TextStyle .fontSize 16 .fontWeight m.FontWeight/bold))
+        (menu/menu {:font-config {:font-family "Times New Roman"}
+                   :bar {:elavation 10}
+                   :item {}}
+                   ["Times New Roman" "Other Properties Default"])
+        
+        (m/SizedBox .height 20)
+        
+        ;; Example 4: Large font configuration
+        (m/Text "4. Large Font Configuration:" .style (m/TextStyle .fontSize 16 .fontWeight m.FontWeight/bold))
+        (menu/menu {:font-config {:font-size 24
+                                 :font-color m.Colors/blue}
+                   :bar {:elavation 10}
+                   :item {}}
+                   ["Large Font" "24px Blue"])
+        
+        (m/SizedBox .height 20)
+        
+        ;; Example 5: Combined configuration
+        (m/Text "5. Combined Configuration:" .style (m/TextStyle .fontSize 16 .fontWeight m.FontWeight/bold))
+        (menu/menu {:font-config {:font-family "Courier New"
+                                  :font-size 20
+                                  :font-weight m.FontWeight/bold
+                                  :font-color m.Colors/purple}
+                    :bar {:background-color m.Colors/yellow
+                          :elavation 8}
+                    :item {:background-color m.Colors/orange}}
+                   ["Combined Config" "Multiple Properties"])
+        
+        (m/SizedBox .height 20)
+        
+        ;; Configuration description
+        (m/Container
+         .padding (.all m/EdgeInsets 10)
+      ;;    .decoration (m/BoxDecoration .color (-> m/Colors .grey .-shade200) .borderRadius (.all m/BorderRadius 8))
+         .child
+         (m/Column
+          .crossAxisAlignment (.start m/CrossAxisAlignment)
+          .children
+          [(m/Text "Font Configuration Guide:" .style (m/TextStyle .fontWeight m.FontWeight/bold))
+           (m/Text "• font-family: Font family name")
+           (m/Text "• font-size: Font size")
+           (m/Text "• font-color: Font color")
+           (m/Text "• font-weight: Font weight")
+           (m/Text "• font-style: Font style")
+           (m/Text "• Use defaults if not configured")]))
+        
+        (m/SizedBox .height 20)
+        
         (f/widget
          :context ctx
          (m/ElevatedButton
-          .child (m/Text "Open")
+          .child (m/Text "Test Text Width Calculation")
           .onPressed #(dart:core/print (str "Football' s width = " (utils/compute-text-width "Football" nil ctx)))))])))
     .debugShowCheckedModeBanner false)))

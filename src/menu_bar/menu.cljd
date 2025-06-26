@@ -8,6 +8,20 @@
    [menu-bar.menu-bar :as menu-bar]
    [menu-bar.utils :as utils]))
 
+;; Helper function: create text style with font configuration support
+(defn create-text-style
+  "Create text style based on font configuration, use defaults if not provided"
+  [font-config]
+  (let [font-size (or (:font-size font-config) (:font-size (:text-style options/menu-item)))
+        font-family (or (:font-family font-config) (:font-family (:text-style options/menu-item)))
+        font-color (or (:font-color font-config) (:color (:text-style options/menu-item)))
+        font-weight (or (:font-weight font-config) m.FontWeight/normal)
+        font-style (or (:font-style font-config) m.FontStyle/normal)]
+    (m/TextStyle .fontSize font-size
+                 .fontFamily font-family
+                 .color font-color
+                 .fontWeight font-weight
+                 .fontStyle font-style)))
 
 (defn menu
   [info items]
@@ -17,7 +31,13 @@
 
     (f/widget
      :context ctx
-     :let [item-info (merge options/menu-item (:item info))
+     :let [font-config (:font-config info)  ; Get font config from info
+           text-style (if font-config
+                       (create-text-style font-config)
+                       (:text-style options/menu-item))  ; Use default if not configured
+           item-info (merge options/menu-item 
+                           (:item info)
+                           {:text-style text-style})  ; Use generated text style
            ^m/EdgeInsets edge-insets (:padding item-info)
            max-height (+ (.-top edge-insets)
                          (.-bottom edge-insets)
