@@ -12,7 +12,7 @@
     .constraints
     (m/BoxConstraints
      .maxHeight (or (:max-height info) (/ height 2))
-     .minHeight (or (:min-height info) 40)
+     .minHeight (or (:min-height info) 10)
      .maxWidth (or (:max-width info) 200))
     .alignment (.topLeft m/Alignment))
    (m/AnimatedOpacity

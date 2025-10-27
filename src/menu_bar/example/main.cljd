@@ -20,6 +20,8 @@
      (m/Padding
       .padding (.all m/EdgeInsets 20)
       .child
+      (m/SingleChildScrollView 
+      .child
       (m/Column
        .crossAxisAlignment (.start m/CrossAxisAlignment)
        .children
@@ -98,5 +100,5 @@
          :context ctx
          (m/ElevatedButton
           .child (m/Text "Test Text Width Calculation")
-          .onPressed #(dart:core/print (str "Football' s width = " (utils/compute-text-width "Football" nil ctx)))))])))
+          .onPressed #(dart:core/print (str "Football' s width = " (utils/compute-text-width "Football" nil ctx)))))]))))
     .debugShowCheckedModeBanner false)))
