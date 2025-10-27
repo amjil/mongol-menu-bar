@@ -36,8 +36,8 @@
                         (create-text-style font-config)
                         (:text-style options/menu-item))  ; Use default if not configured
            item-info (merge options/menu-item
-                            (:item info)
-                            {:text-style text-style})  ; Use generated text style
+                            {:text-style text-style}
+                            (:item info))  ; Use generated text style
            ^m/EdgeInsets edge-insets (:padding item-info)
            max-height (+ (.-top edge-insets)
                          (.-bottom edge-insets)
