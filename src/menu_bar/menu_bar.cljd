@@ -31,10 +31,10 @@
                        nil)))
     .clipBehavior (.antiAlias m/Clip))
    (m.ListView/separated
+    .controller (if (:scroll info) (:scroll info) nil)
     .separatorBuilder (fn [_ i] (m/VerticalDivider .color m.Colors/white .width 1))
     .scrollDirection (.horizontal m/Axis)
 
     ;; .children items
     .itemCount (count items)
-    .itemBuilder (fn [_ i] (nth items i))
-    )))
+    .itemBuilder (fn [_ i] (nth items i)))))
